@@ -14,8 +14,8 @@ const params = {
     const jsonBody = data.Body;
     const yamlBody = YAML.stringify(JSON.parse(jsonBody.toString()));
     console.log(yamlBody);
-    const fileName = `${process.env.SOURCE_FILE.split('.')[0]}.yaml`
-    const yamlData = await s3.putObject({ Bucket: 'tt-yaml-logs', Key: fileName, Body: yamlBody }).promise();
+    const fileName = `${process.env.DESTINATION_FILE}.yaml`
+    const yamlData = await s3.putObject({ Bucket: process.env.DESTINATION_BUCKET, Key: fileName, Body: yamlBody }).promise();
     console.log(yamlData);
 })();
 
